@@ -1,23 +1,15 @@
 from enum import Enum
 
+from htmlnode import HtmlNode, LeafNode
+
 
 class TextType(Enum):
     BOLD = "bold"
     ITALIC = "italic"
-    UNDERLINE = "underline"
-    STRIKE = "strike"
     TEXT = "text"
     IMAGE = "image"
-    VIDEO = "video"
-    AUDIO = "audio"
     LINK = "link"
-    LIST = "list"
-    TABLE = "table"
-    FORM = "form"
-    BUTTON = "button"
-    INPUT = "input"
-    SELECT = "select"
-    OPTION = "option"
+    CODE = "code"
 
 
 class TextNode:
@@ -25,6 +17,22 @@ class TextNode:
         self.text = text
         self.text_type = text_type
         self.url = url
+
+    def text_node_to_html_node(self) -> HtmlNode:
+        if self.text_type == TextType.LINK:
+            return LeafNode("a", self.text, {"href": self.url})
+        elif self.text_type == TextType.CODE:
+            return LeafNode("code", self.text)
+        elif self.text_type == TextType.IMAGE:
+            return LeafNode("img", self.text, {"src": self.url})
+        elif self.text_type == TextType.TEXT:
+            return LeafNode("span", self.text)
+        elif self.text_type == TextType.BOLD:
+            return LeafNode("b", self.text)
+        elif self.text_type == TextType.ITALIC:
+            return LeafNode("i", self.text)
+        else:
+            raise ValueError(f"Invalid text type: {self.text_type}")
 
     def __eq__(self, other):
         return (
