@@ -26,7 +26,7 @@ class TextNode:
         elif self.text_type == TextType.IMAGE:
             return LeafNode("img", self.text, {"src": self.url})
         elif self.text_type == TextType.TEXT:
-            return LeafNode("span", self.text)
+            return LeafNode(None, self.text)
         elif self.text_type == TextType.BOLD:
             return LeafNode("b", self.text)
         elif self.text_type == TextType.ITALIC:

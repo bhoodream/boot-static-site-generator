@@ -21,7 +21,7 @@ class TestTextNode(unittest.TestCase):
     def test_text_node_to_html_node_text(self):
         node = TextNode("Hello", TextType.TEXT)
         html_node = node.text_node_to_html_node()
-        self.assertEqual(html_node.tag, "span")
+        self.assertEqual(html_node.tag, None)
         self.assertEqual(html_node.value, "Hello")
 
     def test_text_node_to_html_node_bold(self):

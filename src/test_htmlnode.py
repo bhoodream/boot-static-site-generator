@@ -107,13 +107,13 @@ class TestHtmlNode(unittest.TestCase):
             "p",
             [
                 LeafNode("b", "Bold text"),
-                LeafNode("span", "Normal text"),
+                LeafNode(None, "Normal text"),
                 LeafNode("i", "italic text"),
             ],
         )
         self.assertEqual(
             node.to_html(),
-            "<p><b>Bold text</b><span>Normal text</span><i>italic text</i></p>",
+            "<p><b>Bold text</b>Normal text<i>italic text</i></p>",
         )
 
     def test_parent_no_tag(self):
